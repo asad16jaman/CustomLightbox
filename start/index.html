@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="imagediv">
+                <img src="./img/vv-min.jpg" alt="hell" onclick="myfunc(this)" data-side='0'>
+            </div>
+            <div class="imagediv">
+                <img src="./img/vcvc.jpg" alt="" onclick="myfunc(this)" data-side='1'>
+            </div>
+            <div class="imagediv">
+                <img src="./img/vcv.jpg" alt="" onclick="myfunc(this)" data-side='2'>
+            </div>
+
+            <div class="imagediv">
+                <img src="./img/vbb.jpg" alt="" onclick="myfunc(this)" data-side='3'>
+            </div>
+            <div class="imagediv">
+                <img src="./img/dfdff-min.jpg" alt="" onclick="myfunc(this)" data-side='4'>
+            </div>
+            <div class="imagediv">
+                <img src="./img/cxcc.jpg" alt="" onclick="myfunc(this)" data-side='5'>
+            </div>
+            <div class="imagediv">
+                <img src="./img/ccc.jpg" alt="" onclick="myfunc(this)" data-side='6'>
+            </div>
+            <div class="imagediv">
+                <img src="./img/businessman-checking-stock-market-online_53876-11970.jpg" alt="" onclick="myfunc(this)" data-side='7'>
+            </div>
+            <div class="imagediv">
+                <img src="./img/677.jpg" alt="" onclick="myfunc(this)" data-side='8'>
+            </div>
+            <div class="imagediv">
+                <img src="./img/3.jpg" alt="" onclick="myfunc(this)" data-side='9'>
+            </div>
+            <div class="imagediv">
+                <img src="./img/1.jpg" alt="" onclick="myfunc(this)" data-side='10'>
+            </div>            
+        </div>
+    </div>
+
+
+    <div class="box" id="lll">
+        <button id="close">X</button>
+        <a id="prev" onclick="prevfunction(this)">&#10094;</a>
+        <a id="nex" onclick="myhellow(this)">&#10095;</a>
+
+        <div class="mod">
+            <img id="demo" class="my" alt="">
+        </div>
+    </div>
+
+    <script>
+
+        function myfunc(ele){
+            document.getElementById('demo').src = ele.src;
+            document.getElementById('lll').style.transform = 'scale(1)'
+            let ooo = Number(ele.getAttribute('data-side'))
+            
+            document.getElementById('nex').setAttribute('data-side',ooo+1)
+
+            let allphoto = document.getElementsByClassName('imagediv')
+            if(ooo<=0){
+                document.getElementById('prev').setAttribute('data-side',(allphoto.length)-1)
+            }else{
+                document.getElementById('prev').setAttribute('data-side',ooo-1)
+            }
+
+        }
+
+        function myhellow(el){
+            let o = Number(el.getAttribute('data-side'))
+            let p = document.getElementsByClassName('imagediv')
+            document.getElementById('demo').src = p[o].children[0].src
+
+            let prebutton = document.getElementById('prev')
+
+            if(o>=p.length-1){
+                el.setAttribute('data-side',0)
+                prebutton.setAttribute('data-side',p.length-2)
+            }else if(o<=0){
+                el.setAttribute('data-side',1)
+                prebutton.setAttribute('data-side',p.length-1)
+            }
+            else{
+                el.setAttribute('data-side',o+1)
+                prebutton.setAttribute('data-side',o-1)
+            }
+        }
+
+
+        function prevfunction(el){
+            let o = Number(el.getAttribute('data-side'))
+
+            let p = document.getElementsByClassName('imagediv')
+            document.getElementById('demo').src = p[o].children[0].src
+
+            let nextbtn = document.getElementById('nex')
+            if(o<=0){
+                 el.setAttribute('data-side',p.length-1)
+                 nextbtn.setAttribute('data-side',o+1)
+
+            }else{
+                el.setAttribute('data-side',o-1)
+                nextbtn.setAttribute('data-side',o+1)
+
+            }
+        }
+
+        document.getElementById('close').addEventListener('click',function(e){
+            document.getElementById('lll').style.transform = 'scale(0)'
+        })
+
+
+
+
+
+    </script>
+        
+
+    </body>
+
+</html>
